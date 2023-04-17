@@ -5132,3 +5132,5 @@ MonoBehaviour:
   ExplosionDelay: 5
   ExplosionPrefab: {fileID: 1938603671146075184, guid: 629690265e6a10745aaddc99b5e4c878,
     type: 3}
+  blastRadius: 4
+  blastDamage: 12
