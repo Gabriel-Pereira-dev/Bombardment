@@ -6,6 +6,7 @@ public class Bomb : MonoBehaviour
 {
     public float ExplosionDelay = 5f;
     public GameObject ExplosionPrefab;
+    public GameObject woodBreakingPrefab;
     public float blastRadius = 2f;
     public int blastDamage = 5;
     // Start is called before the first frame update
@@ -32,7 +33,7 @@ public class Bomb : MonoBehaviour
     private void Explode()
     {
         //Create Explosion
-        var explosion = Instantiate(ExplosionPrefab, transform.position, ExplosionPrefab.transform.rotation);
+        Instantiate(ExplosionPrefab, transform.position, ExplosionPrefab.transform.rotation);
 
         // Destroy platforms
         Collider[] colliders = Physics.OverlapSphere(transform.position, blastRadius);
@@ -51,6 +52,7 @@ public class Bomb : MonoBehaviour
                     lifeScript.health -= damage;
                     if (lifeScript.health <= 0)
                     {
+                        Instantiate(woodBreakingPrefab, hittenObject.transform.position, woodBreakingPrefab.transform.rotation);
                         Destroy(hittenObject);
 
                     }
@@ -63,7 +65,6 @@ public class Bomb : MonoBehaviour
         //Destroy Bomb
 
         Destroy(gameObject);
-        Destroy(explosion, 3.1f);
     }
 
     void OnDrawGizmos()
