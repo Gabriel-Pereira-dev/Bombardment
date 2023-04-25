@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Idle : State
+public class Dead : State
 {
     private PlayerController controller;
 
-    public Idle(PlayerController controller) : base("Idle")
+    public Dead(PlayerController controller) : base("Dead")
     {
         this.controller = controller;
     }
@@ -12,6 +12,7 @@ public class Idle : State
     public override void Enter()
     {
         base.Enter();
+        controller.thisAnimator.SetTrigger("tGameOver");
     }
 
     public override void Exit()
@@ -22,19 +23,6 @@ public class Idle : State
     public override void Update()
     {
         base.Update();
-        // Change to Jump
-        if (controller.hasJumpInput)
-        {
-            controller.stateMachine.ChangeState(controller.jumpState);
-            return;
-        }
-
-        // Change to Walking
-        if (!controller.movementVector.IsZero())
-        {
-            controller.stateMachine.ChangeState(controller.walkingState);
-            return;
-        }
     }
 
     public override void FixedUpdate()
