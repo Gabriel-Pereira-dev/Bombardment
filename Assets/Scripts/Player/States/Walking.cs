@@ -22,6 +22,13 @@ public class Walking : State
     public override void Update()
     {
         base.Update();
+        // Change to Jump
+        if (controller.hasJumpInput)
+        {
+            controller.stateMachine.ChangeState(controller.jumpState);
+            return;
+        }
+
         // Change to Idle
         if (controller.movementVector.IsZero())
         {
