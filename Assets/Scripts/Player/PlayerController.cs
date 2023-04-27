@@ -151,17 +151,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnGUI()
-    {
-        Rect rect = new Rect(10, 10, 100, 50);
-        string text = stateMachine.currentStateName;
-        GUIStyle style = new GUIStyle
-        {
-            fontSize = (int)(50 * (Screen.width / 1920f))
-        };
-        GUI.color = Color.blue;
-        GUI.Label(rect, text, style);
-        GUI.Label(new Rect(20, 20, 100, 50), isGrounded.ToString(), style);
-    }
+    // void OnGUI()
+    // {
+    //     Rect rect = new Rect(10, 10, 100, 50);
+    //     string text = stateMachine.currentStateName;
+    //     GUIStyle style = new GUIStyle
+    //     {
+    //         fontSize = (int)(50 * (Screen.width / 1920f))
+    //     };
+    //     GUI.color = Color.blue;
+    //     GUI.Label(rect, text, style);
+    //     GUI.Label(new Rect(20, 20, 100, 50), isGrounded.ToString(), style);
+    // }
 
 }
