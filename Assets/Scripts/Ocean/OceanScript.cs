@@ -16,12 +16,12 @@ public class OceanScript : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         GameObject otherObject = other.gameObject;
         if (otherObject.CompareTag("Player"))
         {
-            GameManager.Instance.isGameOver = true;
+            GameManager.Instance.EndGame();
         }
     }
 }

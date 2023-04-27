@@ -1888,6 +1888,7 @@ GameObject:
   - component: {fileID: 3674386208325767183}
   - component: {fileID: 3674386208325767280}
   - component: {fileID: 3674386208325767282}
+  - component: {fileID: 1132009578609283620}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -1978,9 +1979,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 30
+  jumpPower: 10
+  jumpMovementFactor: 1
   movementVector: {x: 0, y: 0}
+  hasJumpInput: 0
+  isGrounded: 0
   thisRigidbody: {fileID: 0}
+  thisCollider: {fileID: 0}
   thisAnimator: {fileID: 0}
+--- !u!114 &1132009578609283620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403589542611230642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f9fd6b8d3f2644facb6b864c63a71e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  underwaterDrag: 3
+  underwaterAngularDrag: 1
+  airDrag: 0
+  airAngularDrag: 0.05
+  bouyancyForce: 40
 --- !u!1 &6659915176285474877
 GameObject:
   m_ObjectHideFlags: 0
