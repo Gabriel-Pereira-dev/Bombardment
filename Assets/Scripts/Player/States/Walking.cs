@@ -22,6 +22,9 @@ public class Walking : State
     public override void Update()
     {
         base.Update();
+
+
+
         // Change to Jump
         if (controller.hasJumpInput)
         {
@@ -56,5 +59,6 @@ public class Walking : State
     public override void LateUpdate()
     {
         base.LateUpdate();
+
     }
 }
