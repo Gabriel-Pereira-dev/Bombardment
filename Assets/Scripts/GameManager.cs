@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class GameManager : MonoBehaviour
 
     // Constants
     private static readonly string KEY_HIGHEST_SCORE = "HighestScore";
+    [HideInInspector] public static readonly string KEY_SELECTED_CHARACTER_INDEX = "SelectedCharacterIndex";
 
     // API
 
     public bool isGameOver { get; private set; }
+
     [Header("Audio")]
 
     [SerializeField] private AudioSource musicPlayer;
@@ -23,6 +26,18 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float score;
     [SerializeField] private int highestScore;
+
+    [Header("Character")]
+    public int selectedCharacterIndex;
+    public GameObject[] characters;
+    public string characterName;
+    public new CinemachineVirtualCamera camera;
+
+    [Header("Cannon")]
+
+    public List<GameObject> cannons;
+
+
 
     void Awake()
     {
@@ -37,7 +52,17 @@ public class GameManager : MonoBehaviour
 
         // Score
         score = 0f;
-        highestScore = PlayerPrefs.GetInt(KEY_HIGHEST_SCORE); ;
+        highestScore = PlayerPrefs.GetInt(KEY_HIGHEST_SCORE);
+
+        // Character
+        selectedCharacterIndex = PlayerPrefs.GetInt(KEY_SELECTED_CHARACTER_INDEX);
+        LoadCharacter();
+    }
+
+    void Start()
+    {
+        LoadCharacter();
+        StartCoroutine(EnableNextCannonCoroutine());
     }
 
     void Update()
@@ -94,7 +119,41 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    private void LoadCharacter()
+    {
+        GameObject prefab = characters[selectedCharacterIndex];
+        prefab.SetActive(true);
+        camera.m_Follow = prefab.transform;
+        camera.m_LookAt = prefab.transform;
 
+        characterName = prefab.name;
+
+    }
+
+    private List<GameObject> GetDisabledCannons()
+    {
+        List<GameObject> disabledsCannons = new List<GameObject>();
+        foreach (GameObject c in cannons)
+        {
+            if (!c.activeSelf)
+            {
+                disabledsCannons.Add(c);
+            }
+        }
+        return disabledsCannons;
+    }
+
+    private IEnumerator EnableNextCannonCoroutine()
+    {
+        List<GameObject> currentDisabledsCannons = GetDisabledCannons();
+        int disabledsCannonsQuantity = currentDisabledsCannons.Count;
+        for (int i = 0; i < disabledsCannonsQuantity; i++)
+        {
+            yield return new WaitForSeconds(30f);
+            currentDisabledsCannons[Random.Range(0, currentDisabledsCannons.Count)].SetActive(true);
+            currentDisabledsCannons = GetDisabledCannons();
+        }
+    }
 
 
 }

@@ -21,6 +21,7 @@ public class Jump : State
 
         // Handle animator
         controller.thisAnimator.SetBool("bJumping", true);
+        controller.thisAudioSource.PlayOneShot(controller.jumpSound);
     }
 
     public override void Exit()

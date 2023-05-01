@@ -9,6 +9,11 @@ public class PlayerController : MonoBehaviour
     public float jumpPower = 10f;
     [Range(0f, 1f)] public float jumpMovementFactor = 1f;
 
+    [Header("Sound")]
+
+    [HideInInspector] public AudioSource thisAudioSource;
+    public AudioClip jumpSound;
+
     // State Machine
     [HideInInspector] public StateMachine stateMachine;
     [HideInInspector] public Idle idleState;
@@ -30,6 +35,7 @@ public class PlayerController : MonoBehaviour
         thisRigidbody = GetComponent<Rigidbody>();
         thisCollider = GetComponent<Collider>();
         thisAnimator = GetComponent<Animator>();
+        thisAudioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -98,7 +104,6 @@ public class PlayerController : MonoBehaviour
         // Calculate Rotation
         Camera camera = Camera.main;
         Vector3 inputVector = new Vector3(movementVector.x, 0, movementVector.y);
-        // Debug.Log(inputVector);
         Quaternion q1 = Quaternion.LookRotation(inputVector, Vector3.up);
         Quaternion q2 = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0);
         Quaternion toRotation = q1 * q2;
@@ -122,7 +127,6 @@ public class PlayerController : MonoBehaviour
         if (Physics.SphereCast(origin, radius, direction, out var hitInfo, maxDistance))
         {
             GameObject hitObject = hitInfo.transform.gameObject;
-            Debug.Log(hitObject.name);
             if (hitObject.CompareTag("Platform"))
             {
                 isGrounded = true;

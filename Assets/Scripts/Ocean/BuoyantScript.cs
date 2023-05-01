@@ -9,7 +9,8 @@ public class BuoyantScript : MonoBehaviour
     public float airDrag = 0f;
     public float airAngularDrag = 0.05f;
 
-    public float bouyancyForce = 10f;
+    // public float bouyancyForce = 10f;
+    public Vector2 bouyancyForceForceRange = new Vector2(10.0f, 10.0f);
     private Rigidbody thisRigidbody;
     private bool hasTouchedWater;
 
@@ -38,6 +39,7 @@ public class BuoyantScript : MonoBehaviour
         // Buyoancy Logic
         if (isUnderwater)
         {
+            float bouyancyForce = Random.Range(bouyancyForceForceRange.x, bouyancyForceForceRange.y);
             Vector3 vector = Vector3.up * bouyancyForce * -diffY;
             thisRigidbody.AddForce(vector, ForceMode.Acceleration);
         }

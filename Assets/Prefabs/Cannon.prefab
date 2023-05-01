@@ -2190,6 +2190,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombPrefabs:
   - {fileID: 7248697891870410602, guid: 8d36178a1187dd3419297ea0b7c1c73f, type: 3}
+  - {fileID: 2658526071744679902, guid: 5c9affc4ab91420418d3af7cf349fadb, type: 3}
+  - {fileID: 4486051966867012175, guid: d94a984a312aece4ca2e473e50fa3e1a, type: 3}
+  - {fileID: 7248697891870410602, guid: 8d36178a1187dd3419297ea0b7c1c73f, type: 3}
+  - {fileID: 7248697891870410602, guid: 8d36178a1187dd3419297ea0b7c1c73f, type: 3}
+  - {fileID: 7248697891870410602, guid: 8d36178a1187dd3419297ea0b7c1c73f, type: 3}
+  - {fileID: 7248697891870410602, guid: 8d36178a1187dd3419297ea0b7c1c73f, type: 3}
+  - {fileID: 7248697891870410602, guid: 8d36178a1187dd3419297ea0b7c1c73f, type: 3}
+  - {fileID: 7248697891870410602, guid: 8d36178a1187dd3419297ea0b7c1c73f, type: 3}
+  - {fileID: 7248697891870410602, guid: 8d36178a1187dd3419297ea0b7c1c73f, type: 3}
+  - {fileID: 7248697891870410602, guid: 8d36178a1187dd3419297ea0b7c1c73f, type: 3}
   timeInterval: {x: 3, y: 5}
   spawnPoint: {fileID: 6177806943849215412}
   target: {fileID: 0}
